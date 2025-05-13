@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.FormationClientController"
+            prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@FormationAdmin.css">
+
+    <VBox spacing="20" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- Title Section -->
+        <VBox alignment="CENTER" spacing="20">
+            <Label text="Formations client" styleClass="title-label"/>
+            <HBox alignment="CENTER" spacing="20">
+                <Button text="Mes Réservations" onAction="#openReservationList" styleClass="action-button, reserve-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Empty state - shown when there are no formations -->
+        <VBox fx:id="emptyState" styleClass="empty-state" visible="false" managed="false">
+            <ImageView fitHeight="100" fitWidth="100" preserveRatio="true">
+                <image>
+                    <Image url="@../icons/empty-calendar.png"/>
+                </image>
+            </ImageView>
+            <Label text="Aucune formation disponible" styleClass="empty-state-text"/>
+        </VBox>
+
+        <!-- Scrollable Formation Container -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+            <FlowPane fx:id="formationContainer"
+                      styleClass="formation-list"
+                      hgap="24"
+                      vgap="24"
+                      alignment="CENTER">
+            </FlowPane>
+        </ScrollPane>
+
+    </VBox>
+</AnchorPane>
