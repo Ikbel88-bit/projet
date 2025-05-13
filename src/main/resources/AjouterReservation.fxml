@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #40E0D0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterReservationController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <children>
+                <Label text="Ressources Disponibles" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <FlowPane fx:id="resourceContainer" hgap="20" vgap="20" style="-fx-padding: 20;">
+                        </FlowPane>
+                    </content>
+                </ScrollPane>
+                <Button text="Retour" onAction="#handleRetour"
+                        style="-fx-background-radius: 15; -fx-min-width: 100; -fx-min-height: 30;"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

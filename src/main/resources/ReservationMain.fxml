@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #40E0D0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationMainController">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" layoutX="150.0" layoutY="100.0">
+            <children>
+                <Label text="Gestion des Réservations" style="-fx-font-size: 24px; -fx-text-fill: white;">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnAjouter" onAction="#handleAjouter" text="Ajouter Réservation"
+                        style="-fx-background-radius: 15; -fx-min-width: 300; -fx-min-height: 40;">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnAfficher" onAction="#handleAfficher" text="Afficher Réservations"
+                        style="-fx-background-radius: 15; -fx-min-width: 300; -fx-min-height: 40;">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSupprimer" onAction="#handleSupprimer" text="Supprimer Réservation"
+                        style="-fx-background-radius: 15; -fx-min-width: 300; -fx-min-height: 40;">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.MainController"
+            stylesheets="@/org/example/styles.css">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="top-bar">
+            <Label text="SmartRH" styleClass="app-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Déconnexion" onAction="#handleLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox styleClass="sidebar">
+            <Button text="Accueil" onAction="#handleAccueil" styleClass="menu-button"/>
+            <Button text="Ressources" onAction="#handleRessources" styleClass="menu-button"/>
+            <Button text="Réservations" onAction="#handleReservations" styleClass="menu-button"/>
+        </VBox>
+    </left>
+
+    <!-- Center Content -->
+    <center>
+        <StackPane styleClass="content-pane"/>
+    </center>
+
+</BorderPane> 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.ReservationsController"
+      spacing="10" styleClass="content">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Gestion des réservations" styleClass="header-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Ajouter" onAction="#handleAdd" styleClass="action-button"/>
+        <Button text="Modifier" onAction="#handleEdit" styleClass="action-button"/>
+        <Button text="Supprimer" onAction="#handleDelete" styleClass="action-button"/>
+        <Button text="Retour" onAction="#handleBack" styleClass="action-button secondary"/>
+    </HBox>
+
+    <Separator/>
+
+    <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <!-- <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/> -->
+            <TableColumn fx:id="ressourceColumn" text="Ressource" prefWidth="150"/>
+            <TableColumn fx:id="employeColumn" text="Employé" prefWidth="150"/>
+            <TableColumn fx:id="dateDebutColumn" text="Date début" prefWidth="120"/>
+            <TableColumn fx:id="dateFinColumn" text="Date fin" prefWidth="120"/>
+            <TableColumn fx:id="motifColumn" text="Motif" prefWidth="200"/>
+            <TableColumn fx:id="statutColumn" text="Statut" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Separator/>
+
+    <TitledPane text="Formulaire de réservation" expanded="true" VBox.vgrow="NEVER">
+        <content>
+            <GridPane fx:id="formPane" hgap="10" vgap="10" visible="false" style="-fx-padding: 10;">
+                <Label text="Ressource :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="ressourceCombo" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Salle 101"/>
+                            <String fx:value="Projecteur"/>
+                            <String fx:value="Véhicule"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                
+                <Label text="Employé :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="employeCombo" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Ali Ben"/>
+                            <String fx:value="Sara M."/>
+                            <String fx:value="Yassine T."/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                
+                <Label text="Date début :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dateDebutPicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                
+                <Label text="Date fin :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dateFinPicker" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                
+                <Label text="Motif :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="motifField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                
+                <Label text="Statut :" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="statutCombo" GridPane.rowIndex="5" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="En attente"/>
+                            <String fx:value="Validée"/>
+                            <String fx:value="Refusée"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                
+                <HBox spacing="10" GridPane.rowIndex="6" GridPane.columnIndex="1" alignment="CENTER_RIGHT">
+                    <Button text="Sauvegarder" onAction="#handleSave" styleClass="action-button"/>
+                    <Button text="Annuler" onAction="#handleCancel" styleClass="action-button secondary"/>
+                </HBox>
+            </GridPane>
+        </content>
+    </TitledPane>
+</VBox> 
