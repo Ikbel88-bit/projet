@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController">
+    <children>
+        <VBox spacing="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button fx:id="btnRetour" onAction="#retourLogin" text="Retour" styleClass="button secondary"/>
+                <Label text="Espace Employe" styleClass="title"/>
+            </HBox>
+            
+            <VBox spacing="10" styleClass="content-container">
+                <Label text="Informations personnelles" styleClass="subtitle"/>
+                <Label fx:id="nomLabel" text="Nom: " styleClass="label"/>
+                <Label fx:id="prenomLabel" text="Prénom: " styleClass="label"/>
+                <Label fx:id="emailLabel" text="Email: " styleClass="label"/>
+                <Label fx:id="telephoneLabel" text="Téléphone: " styleClass="label"/>
+                <Label fx:id="roleLabel" text="Rôle: " styleClass="label"/>
+            </VBox>
+            
+            <VBox spacing="10" styleClass="content-container">
+                <Label text="Modifier mot de passe" styleClass="subtitle"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="mdpmodif" promptText="Nouveau mot de passe" styleClass="text-field"/>
+                    <Button fx:id="modifier" onAction="#modifierMdp" text="Modifier" styleClass="button"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>

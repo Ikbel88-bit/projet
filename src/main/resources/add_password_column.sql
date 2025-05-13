@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS reclamation;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE IF NOT EXISTS user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telephone VARCHAR(20) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'Employe',
+    password VARCHAR(255) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE reclamation (
+    reclamation_id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    reponse VARCHAR(255) DEFAULT NULL,
+    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
+); 
+
+ALTER TABLE user ADD COLUMN password VARCHAR(255) NOT NULL DEFAULT ''; 
+
+UPDATE user SET role = 'Employe' WHERE role = 'User'; 
+
+ALTER TABLE user ALTER role SET DEFAULT 'Employe'; 
+
+ALTER TABLE reclamation MODIFY reponse VARCHAR(255) DEFAULT ''; 

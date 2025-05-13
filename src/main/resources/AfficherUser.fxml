@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherUserController">
+    <children>
+        <VBox spacing="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button fx:id="btnRetour" onAction="#retourLogin" text="Retour" styleClass="button secondary"/>
+                <Label text="Gestion des Utilisateurs" styleClass="title"/>
+            </HBox>
+
+            <TableView fx:id="tableView" styleClass="table-view">
+                <columns>
+                    <!-- Colonne ID masquée (visible=false dans le code Java) -->
+                    <TableColumn fx:id="id" prefWidth="0.0" text="ID" />
+                    <TableColumn fx:id="nom" prefWidth="100.0" text="Nom" />
+                    <TableColumn fx:id="prenom" prefWidth="100.0" text="Prénom" />
+                    <TableColumn fx:id="email" prefWidth="150.0" text="Email" />
+                    <TableColumn fx:id="telephone" prefWidth="100.0" text="Téléphone" />
+                    <TableColumn fx:id="role" prefWidth="100.0" text="Rôle" />
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button onAction="#ajouter" text="Ajouter un employé" styleClass="button"/>
+                <Button onAction="#voirReclamations" text="Voir les réclamations" styleClass="button"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

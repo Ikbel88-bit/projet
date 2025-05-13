@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CandidatController">
+    <children>
+        <VBox spacing="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button fx:id="btnRetour" onAction="#retourLogin" text="Retour" style="-fx-background-color: #4a90e2; -fx-text-fill: white;"/>
+                <Button fx:id="btnRetourPrecedent" onAction="#retourPrecedent" text="Retour à la page précédente" style="-fx-background-color: #4a90e2; -fx-text-fill: white;"/>
+                <Label text="Espace Candidat" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Informations personnelles" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                <Label fx:id="nomLabel" text="Nom: " style="-fx-font-size: 14;"/>
+                <Label fx:id="prenomLabel" text="Prénom: " style="-fx-font-size: 14;"/>
+                <Label fx:id="emailLabel" text="Email: " style="-fx-font-size: 14;"/>
+                <Label fx:id="telephoneLabel" text="Téléphone: " style="-fx-font-size: 14;"/>
+                <Label fx:id="roleLabel" text="Rôle: " style="-fx-font-size: 14;"/>
+            </VBox>
+
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Modifier mot de passe" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="mdpmodif" promptText="Nouveau mot de passe" style="-fx-pref-width: 200;"/>
+                    <Button fx:id="modifier" onAction="#modifierMdp" text="Modifier" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Déposer une réclamation" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <TextArea fx:id="reclamationTextArea" promptText="Votre réclamation ici..." style="-fx-pref-height: 100;"/>
+                <Button onAction="#deposerReclamation" text="Envoyer Réclamation" style="-fx-background-color: #FF9800; -fx-text-fill: white;"/>
+                <Label fx:id="confirmationLabel" text="" style="-fx-text-fill: green;"/>
+                <Button fx:id="btnVoirMesReclamations" onAction="#voirMesReclamations" text="Voir mes réclamations" style="-fx-background-color: #4a90e2; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 200px; -fx-background-radius: 5;"/>
+            </VBox>
+
+        </VBox>
+    </children>
+</AnchorPane>

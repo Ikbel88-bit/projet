@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefWidth="400" prefHeight="300" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RepondreReclamationController">
+    <children>
+        <VBox spacing="15" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button fx:id="btnRetour" onAction="#retourPrecedent" text="Retour" styleClass="button secondary"/>
+                <Label text="Répondre à la réclamation" styleClass="title"/>
+            </HBox>
+            <Label text="Réclamation" styleClass="subtitle"/>
+            <TextArea fx:id="reclamationText" editable="false" wrapText="true" prefHeight="100" styleClass="text-field"/>
+            <Label text="Réponse" styleClass="subtitle"/>
+            <TextArea fx:id="reponseText" promptText="Votre réponse ici..." wrapText="true" prefHeight="60" styleClass="text-field"/>
+            <Button fx:id="btnEnvoyer" text="Envoyer la réponse" onAction="#envoyerReponse" styleClass="button"/>
+        </VBox>
+    </children>
+</AnchorPane> 

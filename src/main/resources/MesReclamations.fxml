@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefWidth="500" prefHeight="400" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MesReclamationsController">
+    <children>
+        <VBox spacing="15" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Button fx:id="btnRetour" onAction="#retourPrecedent" text="Retour" styleClass="button secondary"/>
+                <Label text="Mes réclamations et réponses" styleClass="title"/>
+            </HBox>
+            <TableView fx:id="tableView" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colReclamation" text="Réclamation" prefWidth="250"/>
+                    <TableColumn fx:id="colReponse" text="Réponse" prefWidth="200"/>
+                </columns>
+            </TableView>
+            <Button fx:id="btnFermer" text="Fermer" onAction="#fermer" styleClass="button"/>
+        </VBox>
+    </children>
+</AnchorPane> 

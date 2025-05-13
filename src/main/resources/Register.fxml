@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="450.0" prefWidth="400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" styleClass="login-container" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+            <children>
+                <Label text="Créer un compte Candidat" styleClass="title"/>
+                <TextField fx:id="nomField" promptText="Nom" styleClass="text-field"/>
+                <TextField fx:id="prenomField" promptText="Prénom" styleClass="text-field"/>
+                <TextField fx:id="emailField" promptText="Email" styleClass="text-field"/>
+                <TextField fx:id="telephoneField" promptText="Téléphone" styleClass="text-field"/>
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="password-field"/>
+                
+                <HBox spacing="10.0" alignment="CENTER">
+                    <TextField fx:id="verificationCodeField" promptText="Code de vérification" styleClass="text-field" HBox.hgrow="ALWAYS"/>
+                    <Button onAction="#sendVerificationCode" text="Obtenir code" styleClass="button"/>
+                </HBox>
+                
+                <Label fx:id="errorLabel" styleClass="error-text"/>
+                <Button onAction="#registerCandidat" text="Créer le compte" styleClass="button"/>
+                <Button onAction="#retourLogin" text="Retour" styleClass="button"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane> 
