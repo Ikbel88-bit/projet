@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox spacing="18.0" alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="700.0" styleClass="card-offre" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CondidatureCardController">
+    <children>
+        <VBox spacing="10.0" prefWidth="650.0">
+            <children>
+                <HBox spacing="15.0" alignment="CENTER_LEFT">
+                    <Label fx:id="labelEntreprise" styleClass="label-section" text="Entreprise" />
+                    <Label fx:id="labelTitre" styleClass="label-title" text="Titre de l'offre" />
+                    <Label fx:id="labelContrat" styleClass="label-section" text="Contrat" />
+                </HBox>
+                <Label fx:id="labelLettre" wrapText="true" styleClass="label-content" text="Lettre de motivation" />
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="Statut : " styleClass="label-section" />
+                    <Label fx:id="labelStatut" styleClass="label-content" text="en attente" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+</HBox> 
