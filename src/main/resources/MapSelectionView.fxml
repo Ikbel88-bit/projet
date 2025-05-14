@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MapSelectionController"
+      style="-fx-background-color: #f5f5f5; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-spacing: 10; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-width: 1;">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+    </padding>
+
+    <!-- Window Controls -->
+    <HBox alignment="CENTER_RIGHT" spacing="5.0" style="-fx-alignment: center-right;">
+        <Button fx:id="btnMinimize" text="_" onAction="#handleMinimize"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 12px; -fx-padding: 2 8; -fx-background-radius: 3; -fx-cursor: hand;" />
+        <Button fx:id="btnMaximize" text="□" onAction="#handleMaximize"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 12px; -fx-padding: 2 8; -fx-background-radius: 3; -fx-cursor: hand;" />
+        <Button fx:id="btnClose" text="✕" onAction="#handleClose"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 12px; -fx-padding: 2 8; -fx-background-radius: 3; -fx-cursor: hand;" />
+    </HBox>
+
+    <Text text="Sélection du lieu de l'entretien"
+          style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2c3e50; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);" />
+
+    <VBox spacing="10" style="-fx-spacing: 10;">
+        <Label text="Lieux prédéfinis :" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <ComboBox fx:id="cbPredefinedLocations" promptText="Sélectionnez un lieu prédéfini"
+                  style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 13px;"
+                  VBox.vgrow="NEVER" prefWidth="400.0" />
+    </VBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="tfSearchLocation" promptText="Rechercher un lieu (ex: Tunis, Sfax, etc.)"
+                  style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8; -fx-font-size: 13px;"
+                  HBox.hgrow="ALWAYS" />
+        <Button fx:id="btnSearch" text="Rechercher" onAction="#handleSearch"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 8 15; -fx-background-radius: 5; -fx-cursor: hand;" />
+    </HBox>
+
+    <ListView fx:id="lvSearchResults" prefHeight="300.0" prefWidth="600.0" VBox.vgrow="ALWAYS"
+              style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;" />
+
+    <VBox spacing="10" style="-fx-spacing: 10;">
+        <HBox alignment="CENTER" spacing="15.0" style="-fx-spacing: 15; -fx-alignment: center;">
+            <Label text="Lieu sélectionné :" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+            <TextField fx:id="tfSelectedLocation" editable="false" promptText="Aucun lieu sélectionné"
+                      style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8; -fx-font-size: 13px;"
+                      HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <Button fx:id="btnViewOnMap" text="Voir sur Google Maps" onAction="#handleViewOnMap"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 8 15; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;"
+                maxWidth="Infinity" />
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="15.0" style="-fx-spacing: 15; -fx-alignment: center;">
+        <Button mnemonicParsing="false" onAction="#handleConfirm" text="Confirmer"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" />
+        <Button mnemonicParsing="false" onAction="#handleCancel" text="Annuler"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" />
+    </HBox>
+</VBox>
