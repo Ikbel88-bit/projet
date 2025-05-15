@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,45 +18,16 @@
       <VBox layoutY="78.0" prefHeight="522.0" prefWidth="400.0" style="-fx-background-color: #154c79;">
          <children>
             <Button mnemonicParsing="false" onAction="#tocondidature" prefHeight="25.0" prefWidth="405.0" styleClass="rh-btn" text=" Mes Condidatures" />
+            
+            <!-- Suppression de la barre de filtrage en double -->
+            
             <ScrollPane prefHeight="512.0" prefWidth="401.0" styleClass="scroll-pane">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
                <content>
                   <VBox fx:id="LesOffres" prefHeight="120.0" prefWidth="390.0" styleClass="card-offre">
-                     <children>
-                        <VBox prefHeight="56.0" prefWidth="176.0">
-                           <VBox.margin>
-                              <Insets right="258.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="69.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Image/téléchargement.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                        <HBox prefHeight="25.0" prefWidth="244.0">
-                           <children>
-                              <Label prefHeight="25.0" prefWidth="63.0" text="Entreprise : " underline="true">
-                                 <font>
-                                    <Font name="Barlow Condensed ExtraBold Italic" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="25.0" prefWidth="87.0" text="CompanyX">
-                                 <font>
-                                    <Font name="Arial Narrow" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" styleClass="rh-btn" text="Voir plus " underline="true">
-                                 <font>
-                                    <Font name="Barlow Condensed ExtraLight" size="12.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
+                     <!-- Les offres seront ajoutées ici dynamiquement -->
                   </VBox>
                </content>
             </ScrollPane>

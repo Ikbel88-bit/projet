@@ -100,5 +100,31 @@ public class ServiceOffre implements IService<Offre> {
         }
         return offres;
     }
+
+    /**
+     * Récupère une offre par son ID
+     * @param idOffre l'ID de l'offre à récupérer
+     * @return l'offre correspondante ou null si non trouvée
+     * @throws SQLException en cas d'erreur SQL
+     */
+    public Offre get(int idOffre) throws SQLException {
+        Connection con = db.getCnx();
+        String req = "SELECT * FROM offre WHERE idOffre = ?";
+        try (PreparedStatement ps = con.prepareStatement(req)) {
+            ps.setInt(1, idOffre);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int idResponsable = rs.getInt("idResponsable");
+                    String titre = rs.getString("titreOffre");
+                    String description = rs.getString("descriptionOffre");
+                    String contrat = rs.getString("typeContrat");
+                    String entreprise = rs.getString("nomEntreprise");
+                    
+                    return new Offre(idOffre, idResponsable, titre, description, contrat, entreprise);
+                }
+            }
+        }
+        return null;
+    }
 }
 

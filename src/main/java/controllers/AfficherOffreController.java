@@ -6,13 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ScrollPane;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Priority;
 import services.ServiceOffre;
@@ -25,11 +23,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.layout.HBox;
+import java.util.stream.Collectors;
 
 public class AfficherOffreController implements Initializable {
     @FXML
     private VBox LesOffres;
-
     @FXML
     private VBox detailOffre; // c'est celui dans ta vue principale
     @FXML
@@ -40,20 +41,105 @@ public class AfficherOffreController implements Initializable {
     private Label TITTRE;
     @FXML
     private Label TYPE;
+    
+    // Nouveaux éléments pour le filtrage
+    @FXML
+    private ComboBox<String> filtreContratComboBox;
+    @FXML
+    private TextField rechercheTextField;
+    @FXML
+    private Button btnRechercher;
+    
+    private List<Offre> toutesLesOffres;
+    private ServiceOffre serviceOffre;
 
     public VBox getDetailOffre() {
         return detailOffre;
     }
+    
     public void initialize(URL location, ResourceBundle resources) {
-        ServiceOffre servicesoffre = new ServiceOffre();
-
-        List<Offre> offres = null;
+        serviceOffre = new ServiceOffre();
+        
+        // Initialiser les contrôles de filtrage
+        initFiltres();
+        
+        // Charger toutes les offres
+        chargerOffres();
+    }
+    
+    private void initFiltres() {
+        // Créer les éléments de filtrage s'ils n'existent pas dans le FXML
+        HBox filtresBox = new HBox(10);
+        filtresBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        filtresBox.setPadding(new Insets(10, 10, 10, 10));
+        filtresBox.setStyle("-fx-background-color: #f5f5f5; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;");
+        
+        // Filtre par type de contrat
+        Label filtreLabel = new Label("Type de contrat:");
+        filtreLabel.setStyle("-fx-font-weight: bold;");
+        
+        filtreContratComboBox = new ComboBox<>();
+        filtreContratComboBox.getItems().addAll("Tous", "CDI", "CDD", "Stage", "Freelance", "Alternance");
+        filtreContratComboBox.setValue("Tous");
+        filtreContratComboBox.setPrefWidth(150);
+        filtreContratComboBox.valueProperty().addListener((obs, oldVal, newVal) -> filtrerOffres());
+        
+        // Recherche par titre
+        Label rechercheLabel = new Label("Rechercher:");
+        rechercheLabel.setStyle("-fx-font-weight: bold;");
+        
+        rechercheTextField = new TextField();
+        rechercheTextField.setPromptText("Titre de l'offre...");
+        rechercheTextField.setPrefWidth(200);
+        
+        btnRechercher = new Button("Rechercher");
+        btnRechercher.getStyleClass().add("rh-btn");
+        btnRechercher.setOnAction(e -> filtrerOffres());
+        
+        // Ajouter les éléments à la boîte de filtres
+        filtresBox.getChildren().addAll(
+            filtreLabel, filtreContratComboBox, 
+            rechercheLabel, rechercheTextField, 
+            btnRechercher
+        );
+        
+        // Ajouter la boîte de filtres au début du VBox principal
+        if (LesOffres.getChildren().size() > 0) {
+            LesOffres.getChildren().add(0, filtresBox);
+        } else {
+            LesOffres.getChildren().add(filtresBox);
+        }
+    }
+    
+    private void chargerOffres() {
         try {
-            offres = Collections.unmodifiableList(servicesoffre.recuperer());
+            toutesLesOffres = Collections.unmodifiableList(serviceOffre.recuperer());
+            filtrerOffres();
         } catch (SQLException e) {
+            afficherErreur("Erreur", "Impossible de charger les offres: " + e.getMessage());
             throw new RuntimeException(e);
         }
-        for(int i = 0; i<offres.toArray().length; i++){
+    }
+    
+    private void filtrerOffres() {
+        // Vider la liste des offres affichées (sauf les filtres)
+        if (LesOffres.getChildren().size() > 1) {
+            LesOffres.getChildren().remove(1, LesOffres.getChildren().size());
+        }
+        
+        // Récupérer les valeurs des filtres
+        String typeContrat = filtreContratComboBox.getValue();
+        String recherche = rechercheTextField.getText().toLowerCase().trim();
+        
+        // Filtrer les offres
+        List<Offre> offresFiltrees = toutesLesOffres.stream()
+            .filter(offre -> typeContrat.equals("Tous") || offre.getTypeContrat().equals(typeContrat))
+            .filter(offre -> recherche.isEmpty() || 
+                   offre.getTitreOffre().toLowerCase().contains(recherche))
+            .collect(Collectors.toList());
+        
+        // Afficher les offres filtrées
+        for (Offre offre : offresFiltrees) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/OffreItem.fxml"));
             try {
@@ -61,7 +147,7 @@ public class AfficherOffreController implements Initializable {
                 if (item instanceof VBox) {
                     VBox vBox = (VBox) item;
                     controllers.OffreItemController cir = fxmlLoader.getController();
-                    cir.setData(offres.get(i));
+                    cir.setData(offre);
                     cir.setParentController(this);
                     LesOffres.getChildren().add(vBox);
                 } else {
@@ -71,6 +157,21 @@ public class AfficherOffreController implements Initializable {
                 e.printStackTrace();
             }
         }
+        
+        // Afficher un message si aucune offre ne correspond aux critères
+        if (offresFiltrees.isEmpty()) {
+            Label aucuneOffreLabel = new Label("Aucune offre ne correspond à vos critères de recherche");
+            aucuneOffreLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #757575; -fx-padding: 20;");
+            LesOffres.getChildren().add(aucuneOffreLabel);
+        }
+    }
+    
+    private void afficherErreur(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     /*
     @FXML private VBox offresContainer;
