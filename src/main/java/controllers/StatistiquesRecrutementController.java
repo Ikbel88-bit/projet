@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import services.ServiceStatistique;
 import services.ServiceOffre;
 
@@ -24,6 +25,8 @@ public class StatistiquesRecrutementController {
     private Label lblNombreCandidatures;
     @FXML
     private PieChart pieChartStatuts;
+    @FXML
+    private Button btnRetour;
 
     private ServiceStatistique serviceStatistique;
     private ServiceOffre serviceOffre;
@@ -121,5 +124,15 @@ public class StatistiquesRecrutementController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    /**
+     * Retourne à l'écran des candidatures
+     */
+    @FXML
+    private void retourVersOffres() {
+        // Fermer la fenêtre actuelle
+        Stage stage = (Stage) btnRetour.getScene().getWindow();
+        stage.close();
     }
 }

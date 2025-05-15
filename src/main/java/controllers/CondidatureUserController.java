@@ -12,6 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import services.ServiceCondidature;
 import services.ServiceOffre;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class CondidatureUserController {
     @FXML
     private VBox cardsContainer;
     private int idUser = 1; // À remplacer par l'utilisateur connecté
+
+    @FXML
+    private Button btnRetour;
 
     @FXML
     public void initialize() {
@@ -67,8 +72,39 @@ public class CondidatureUserController {
         chargerCandidatures();
     }
 
-    // Méthodes appelées par les cards pour rafraîchir après modif/suppression
+    // Méthode appelée par les cards pour rafraîchir après modif/suppression
     public void refresh() {
-        chargerCandidatures();
+        // Utiliser Platform.runLater pour s'assurer que la mise à jour se fait sur le thread JavaFX
+        javafx.application.Platform.runLater(() -> {
+            try {
+                System.out.println("Rafraîchissement des candidatures...");
+                chargerCandidatures();
+            } catch (Exception e) {
+                System.err.println("Erreur lors du rafraîchissement des candidatures: " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Retourne à l'écran des offres
+     */
+    @FXML
+    private void retourVersOffres() {
+        try {
+            // Fermer la fenêtre actuelle
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+            stage.close();
+            
+            // Optionnel : ouvrir l'écran des offres si nécessaire
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherOffre.fxml"));
+            Parent root = loader.load();
+            Stage offreStage = new Stage();
+            offreStage.setTitle("Offres d'emploi");
+            offreStage.setScene(new Scene(root));
+            offreStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

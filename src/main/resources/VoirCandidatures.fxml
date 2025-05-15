@@ -17,6 +17,12 @@
          layoutX="20.0" layoutY="10.0"
          prefWidth="760.0" prefHeight="40.0">
       
+      <!-- Bouton de retour -->
+      <Button fx:id="btnRetour" 
+              text="Retour" 
+              onAction="#retourVersOffres"
+              styleClass="rh-btn"/>
+      
       <!-- Bouton pour ouvrir les statistiques -->
       <Button fx:id="btnStatistiques" 
               text="Voir les statistiques" 

@@ -21,7 +21,15 @@
       <!-- Titre -->
       <HBox prefHeight="81.0" prefWidth="400.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label alignment="CENTER" prefHeight="81.0" prefWidth="403.0" style="-fx-background-color: #2196F3;" styleClass="label-title" text="GESTION DES OFFRES" textFill="WHITE">
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets left="10.0"/>
+               </padding>
+               <children>
+                  <Button fx:id="btnRetour" text="Retour" styleClass="rh-btn" onAction="#retourVersMenu"/>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="350.0" style="-fx-background-color: #2196F3;" styleClass="label-title" text="GESTION DES OFFRES" textFill="WHITE">
                <font>
                   <Font name="Barlow Condensed ExtraBold Italic" size="44.0" />
                </font>

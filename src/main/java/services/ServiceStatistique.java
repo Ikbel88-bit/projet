@@ -102,45 +102,6 @@ public class ServiceStatistique {
     }
 
     /**
-     * Calcule le temps moyen de recrutement pour toutes les offres
-     */
-    public double calculerTempsRecrutementMoyen() throws SQLException {
-        List<StatistiqueRecrutement> stats = genererStatistiquesPourToutesOffres();
-        if (stats.isEmpty()) {
-            return 0;
-        }
-
-        int sommeTemps = 0;
-        int nombreOffresTerminees = 0;
-
-        for (StatistiqueRecrutement stat : stats) {
-            if (stat.getTempsRecrutementJours() > 0) {
-                sommeTemps += stat.getTempsRecrutementJours();
-                nombreOffresTerminees++;
-            }
-        }
-
-        return nombreOffresTerminees > 0 ? (double) sommeTemps / nombreOffresTerminees : 0;
-    }
-
-    /**
-     * Calcule le taux de conversion moyen pour toutes les offres
-     */
-    public double calculerTauxConversionMoyen() throws SQLException {
-        List<StatistiqueRecrutement> stats = genererStatistiquesPourToutesOffres();
-        if (stats.isEmpty()) {
-            return 0;
-        }
-
-        double sommeTaux = 0;
-        for (StatistiqueRecrutement stat : stats) {
-            sommeTaux += stat.getTauxConversion();
-        }
-
-        return sommeTaux / stats.size();
-    }
-
-    /**
      * Calcule le temps de recrutement pour une offre (en jours)
      */
     private int calculerTempsRecrutement(int idOffre) throws SQLException {

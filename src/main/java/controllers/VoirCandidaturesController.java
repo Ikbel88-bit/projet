@@ -32,6 +32,8 @@ public class VoirCandidaturesController {
     private Label compteurLabel;
     @FXML
     private Button btnStatistiques;
+    @FXML
+    private Button btnRetour;
 
     private ServiceCondidature serviceCondidature;
     private ServiceUtilisateur serviceUtilisateur;
@@ -268,5 +270,15 @@ public class VoirCandidaturesController {
             e.printStackTrace();
             afficherMessage(AlertType.ERROR, "Erreur", "Impossible d'ouvrir les statistiques: " + e.getMessage());
         }
+    }
+
+    /**
+     * Retourne à l'écran de gestion des offres
+     */
+    @FXML
+    private void retourVersOffres() {
+        // Fermer la fenêtre actuelle
+        Stage stage = (Stage) btnRetour.getScene().getWindow();
+        stage.close();
     }
 }

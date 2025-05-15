@@ -288,6 +288,28 @@ public class AfficherOffreController implements Initializable {
         }
     }
 
+    @FXML
+    private Button btnRetour;
+
+    /**
+     * Retourne au menu principal
+     */
+    @FXML
+    public void retourVersMenu() {
+        try {
+            // Fermer la fenêtre actuelle
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+            stage.close();
+            
+            // Optionnel : ouvrir le menu principal si nécessaire
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            Parent root = loader.load();
+            Stage menuStage = new Stage();
+            menuStage.setTitle("Menu Principal");
+            menuStage.setScene(new Scene(root));
+            menuStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

@@ -51,7 +51,10 @@ public class Condidature {
     public void setLettreDeMotivation(String lettreDeMotivation) {
         this.lettreDeMotivation = lettreDeMotivation;
     }
-    public String getStatut() {return statut;}
+    public String getStatut() {
+        // Si le statut est null, retourner une valeur par défaut
+        return statut != null ? statut : "en attente";
+    }
     public void setStatut(String statut) {
         this.statut = statut;
     }
@@ -65,6 +68,5 @@ public class Condidature {
                 " lettre de motivation : " +lettreDeMotivation +
                 " statut: " + statut +
                 '}';
-
     }
 }

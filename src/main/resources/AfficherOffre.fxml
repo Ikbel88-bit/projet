@@ -17,7 +17,10 @@
    <children>
       <VBox layoutY="78.0" prefHeight="522.0" prefWidth="400.0" style="-fx-background-color: #154c79;">
          <children>
-            <Button mnemonicParsing="false" onAction="#tocondidature" prefHeight="25.0" prefWidth="405.0" styleClass="rh-btn" text=" Mes Condidatures" />
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #eaeaf4; -fx-padding: 10;">
+               <Button fx:id="btnRetour" text="Retour" onAction="#retourVersMenu" styleClass="rh-btn"/>
+               <Button mnemonicParsing="false" onAction="#tocondidature" prefHeight="25.0" prefWidth="250.0" styleClass="rh-btn" text="Mes Condidatures" />
+            </HBox>
             
             <!-- Suppression de la barre de filtrage en double -->
             

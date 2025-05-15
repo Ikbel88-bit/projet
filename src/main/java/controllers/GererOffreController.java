@@ -64,6 +64,8 @@ public class GererOffreController {
     private Button btnVoirCandidatures;
     @FXML
     private VBox candidaturesBox;
+    @FXML
+    private Button btnRetour;
 
     @javafx.fxml.FXML
     private ServiceOffre serviceOffre;
@@ -461,5 +463,27 @@ public class GererOffreController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    /**
+     * Retourne au menu principal
+     */
+    @FXML
+    private void retourVersMenu() {
+        try {
+            // Fermer la fenêtre actuelle
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+            stage.close();
+            
+            // Optionnel : ouvrir le menu principal si nécessaire
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            Parent root = loader.load();
+            Stage menuStage = new Stage();
+            menuStage.setTitle("Menu Principal");
+            menuStage.setScene(new Scene(root));
+            menuStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

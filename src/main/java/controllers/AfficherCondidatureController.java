@@ -48,10 +48,31 @@ public class AfficherCondidatureController {
     private Offre offre;
     int idUser = 1;
 
+    private Condidature condidature;
+    private Scene previousScene;
+    private Parent previousRoot;
+    private CondidatureUserController parentController;
+
     public void setOffre(Offre offre) {
         this.offre = offre;
         labelTitre.setText(String.valueOf(offre.getIdOffre()));
         labelEntreprise.setText(offre.getNomEntreprise());
+    }
+
+    public void setCondidature(Condidature condidature) {
+        this.condidature = condidature;
+    }
+
+    public void setPreviousScene(Scene scene) {
+        this.previousScene = scene;
+    }
+
+    public void setPreviousRoot(Parent root) {
+        this.previousRoot = root;
+    }
+
+    public void setParentController(CondidatureUserController controller) {
+        this.parentController = controller;
     }
 
     @FXML
@@ -125,8 +146,7 @@ public class AfficherCondidatureController {
             alert.setContentText("Votre candidature a été envoyée avec succès.");
             alert.showAndWait();
             
-            Stage stage = (Stage) lettreMotivationField.getScene().getWindow();
-            stage.close();
+            retourVersListe(); // Retourner à l'écran précédent
         } catch (SQLException e) {
             System.err.println("Erreur SQL lors de l'ajout de la candidature: " + e.getMessage());
             e.printStackTrace();
@@ -139,8 +159,66 @@ public class AfficherCondidatureController {
         }
     }
 
-    public void initialize() {
+    @FXML
+    private void retourVersListe() {
+        if (previousScene != null && previousRoot != null) {
+            // Créer une animation de fondu à la sortie
+            javafx.animation.FadeTransition fadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(200), lettreMotivationField.getScene().getRoot());
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            
+            // Après la fin de l'animation, revenir à l'écran précédent
+            fadeOut.setOnFinished(event -> {
+                Stage stage = (Stage) lettreMotivationField.getScene().getWindow();
+                
+                // Rendre le root précédent transparent pour l'animation
+                previousRoot.setOpacity(0);
+                previousScene.setRoot(previousRoot);
+                stage.setScene(previousScene);
+                stage.setTitle("Mes Candidatures");
+                
+                // Animation de fondu à l'entrée pour l'écran précédent
+                javafx.animation.FadeTransition fadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(300), previousRoot);
+                fadeIn.setFromValue(0);
+                fadeIn.setToValue(1);
+                fadeIn.play();
+                
+                // Rafraîchir les données si nécessaire
+                if (parentController != null) {
+                    parentController.refresh();
+                }
+            });
+            
+            // Démarrer l'animation de sortie
+            fadeOut.play();
+        }
+    }
 
+    public void initialize() {
+        // Code existant...
+        
+        // Ajouter des effets visuels aux boutons
+        if (btnChoisirCv != null) {
+            // Effet de survol
+            btnChoisirCv.setOnMouseEntered(e -> {
+                btnChoisirCv.setStyle("-fx-background-color: #2980b9; -fx-text-fill: white;");
+                btnChoisirCv.setCursor(javafx.scene.Cursor.HAND);
+            });
+            
+            btnChoisirCv.setOnMouseExited(e -> {
+                btnChoisirCv.setStyle("");
+                btnChoisirCv.setCursor(javafx.scene.Cursor.DEFAULT);
+            });
+            
+            // Effet de clic
+            btnChoisirCv.setOnMousePressed(e -> {
+                btnChoisirCv.setStyle("-fx-background-color: #1c6ea4; -fx-text-fill: white;");
+            });
+            
+            btnChoisirCv.setOnMouseReleased(e -> {
+                btnChoisirCv.setStyle("-fx-background-color: #2980b9; -fx-text-fill: white;");
+            });
+        }
     }
 
     @FXML
