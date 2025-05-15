@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListeEntretiensController"
+      style="-fx-background-color: #f5f5f5; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-spacing: 15; -fx-padding: 20;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Text text="Liste des Entretiens" 
+          style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #2c3e50; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);" />
+    
+    <TableView fx:id="tableEntretiens" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="colTitre" text="Titre" prefWidth="150.0" />
+            <TableColumn fx:id="colDate" text="Date" prefWidth="100.0" />
+            <TableColumn fx:id="colLieu" text="Lieu" prefWidth="150.0" />
+            <TableColumn fx:id="colParticipant" text="Participant" prefWidth="150.0" />
+            <TableColumn fx:id="colStatut" text="Statut" prefWidth="100.0" />
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="180.0" />
+        </columns>
+    </TableView>
+    
+    <HBox alignment="CENTER" spacing="15.0" style="-fx-spacing: 15; -fx-alignment: center;">
+        <Button mnemonicParsing="false" onAction="#handleFermer" text="Fermer"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 25; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" />
+    </HBox>
+</VBox> 

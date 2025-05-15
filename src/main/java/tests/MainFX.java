@@ -18,14 +18,21 @@ public class MainFX extends Application {
     public void start(Stage primaryStage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-            Parent root = fxmlLoader.load();
+            //Parent root = fxmlLoader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
+            primaryStage.show();
+
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Gestion des Entretiens et Évaluations");
             primaryStage.show();
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de l'interface: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 }
