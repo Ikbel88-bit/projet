@@ -1,5 +1,6 @@
 package controller;
 
+import controllers.MainController;
 import entities.User;
 import entities.Projet;
 import entities.Notification;
@@ -16,6 +17,11 @@ import services.ServiceTache;
 import services.ServiceUser;
 import services.ServiceNotification;
 import services.ServiceTacheNotification;
+import controller.GestionProjetController;
+import controllers.GestionTacheController;
+import controller.GestionUtilisateurController;
+import controller.StatisticsController;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

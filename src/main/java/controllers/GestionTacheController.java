@@ -1,9 +1,10 @@
-package controller;
+package controllers;
 
 import entities.Tache;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -13,10 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import services.ServiceTache;
+import services.ServiceUser;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -60,7 +64,7 @@ public class GestionTacheController {
     private ServiceTache serviceTache;
     private Tache tache;
     private boolean isAdmin;
-    private MainController mainController;
+    private controllers.MainController mainController;
     private User currentUser;
 
     /**
@@ -76,7 +80,7 @@ public class GestionTacheController {
      * Définit le contrôleur principal
      * @param mainController le contrôleur principal
      */
-    public void setMainController(MainController mainController) {
+    public void setMainController(controllers.MainController mainController) {
         this.mainController = mainController;
     }
 
@@ -604,7 +608,7 @@ public class GestionTacheController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
                 Parent view = loader.load();
                 
-                AdminDashboardController controller = loader.getController();
+                controller.AdminDashboardController controller = loader.getController();
                 controller.setMainController(mainController);
                 if (currentUser != null) {
                     controller.setCurrentUser(currentUser);

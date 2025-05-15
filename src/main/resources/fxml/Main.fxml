@@ -4,7 +4,7 @@
 
 <BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.MainController">
+            fx:controller="controllers.MainController">
     <stylesheets>
         <String fx:value="/css/styles.css"/>
         <String fx:value="/styles/dashboard.css"/>

@@ -2,20 +2,24 @@ package controller;
 
 import entities.Projet;
 import entities.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.scene.layout.VBox;
 import services.ServiceProjet;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import services.ServiceUser;
+import utils.MyDatabase;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
@@ -58,13 +62,13 @@ public class GestionProjetController {
     private User currentUser;
 
     // Référence au contrôleur principal
-    private MainController mainController;
+    private controllers.MainController mainController;
 
     /**
      * Définit le contrôleur principal
      * @param mainController le contrôleur principal
      */
-    public void setMainController(MainController mainController) {
+    public void setMainController(controllers.MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
             this.currentUser = mainController.getCurrentUser();
@@ -92,8 +96,12 @@ public class GestionProjetController {
         
         // Vérifier la structure de la table projet
         try {
-            Connection connection = utils.MyDatabase.getInstance().getConnection();
-            utils.DatabaseChecker.checkTableStructure("projet", connection);
+            Connection connection = utils.MyDatabase.getInstance().getCnx();
+            // Remplacer l'appel à DatabaseChecker par une simple vérification
+            try (Statement stmt = connection.createStatement()) {
+                stmt.executeQuery("DESCRIBE projet");
+                LOGGER.info("Structure de la table projet vérifiée");
+            }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Erreur lors de la vérification de la structure de la table", e);
         }
@@ -403,7 +411,7 @@ public class GestionProjetController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
                 Parent view = loader.load();
                 
-                AdminDashboardController controller = loader.getController();
+                controller.AdminDashboardController controller = loader.getController();
                 controller.setMainController(mainController);
                 controller.initData();
                 

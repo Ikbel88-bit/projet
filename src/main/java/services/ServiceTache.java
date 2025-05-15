@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ServiceTache implements IService<Tache> {
+public class ServiceTache{
     private static final Logger LOGGER = Logger.getLogger(ServiceTache.class.getName());
     private Connection connection;
 
@@ -150,7 +150,7 @@ public class ServiceTache implements IService<Tache> {
      * @param t La tâche à ajouter
      * @throws SQLException En cas d'erreur SQL
      */
-    @Override
+
     public void ajouter(Tache t) throws SQLException {
         try {
             // Obtenir l'ID de l'utilisateur connecté ou un ID valide de la table user
@@ -217,7 +217,7 @@ public class ServiceTache implements IService<Tache> {
         }
     }
     
-    @Override
+
     public void modifier(Tache tache) throws SQLException {
         String req = "UPDATE tache SET nom_tache=?, description=?, date_debut=?, date_fin=?, etat=?, id_projet=?, id_employe=?, commentaire=? WHERE id=?";
         PreparedStatement ps = connection.prepareStatement(req);
@@ -233,12 +233,11 @@ public class ServiceTache implements IService<Tache> {
         ps.executeUpdate();
     }
     
-    @Override
+
     public void supprimer(Tache tache) throws SQLException {
         supprimer(tache.getId_tache());
     }
-    
-    @Override
+
     public void supprimer(int id) throws SQLException {
         String sql = "DELETE FROM tache WHERE id_tache = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -255,8 +254,7 @@ public class ServiceTache implements IService<Tache> {
             throw e;
         }
     }
-    
-    @Override
+
     public List<Tache> recuperer() throws SQLException {
         List<Tache> taches = new ArrayList<>();
         String sql = "SELECT t.*, p.nom_projet FROM tache t LEFT JOIN projet p ON t.id_projet = p.id_projet";
@@ -300,8 +298,7 @@ public class ServiceTache implements IService<Tache> {
         }
         return taches;
     }
-    
-    @Override
+
     public Tache recupererParId(int id) throws SQLException {
         String sql = "SELECT t.*, p.nom_projet FROM tache t LEFT JOIN projet p ON t.id_projet = p.id_projet WHERE t.id_tache = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -346,7 +343,6 @@ public class ServiceTache implements IService<Tache> {
         return null;
     }
     
-    @Override
     public List<Tache> rechercher(String critere) throws SQLException {
         List<Tache> taches = new ArrayList<>();
         String sql = "SELECT t.*, p.nom_projet FROM tache t LEFT JOIN projet p ON t.id_projet = p.id_projet WHERE t.nom_tache LIKE ? OR t.description LIKE ? OR t.etat LIKE ?";
@@ -367,7 +363,7 @@ public class ServiceTache implements IService<Tache> {
         return taches;
     }
     
-    @Override
+
     public boolean existe(int id) throws SQLException {
         String sql = "SELECT COUNT(*) FROM tache WHERE id_tache = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -383,7 +379,7 @@ public class ServiceTache implements IService<Tache> {
         return false;
     }
     
-    @Override
+
     public int compter() throws SQLException {
         String sql = "SELECT COUNT(*) FROM tache";
         try (PreparedStatement statement = connection.prepareStatement(sql);
@@ -398,7 +394,7 @@ public class ServiceTache implements IService<Tache> {
         return 0;
     }
     
-    @Override
+
     public List<Tache> afficher() throws SQLException {
         return recuperer();
     }

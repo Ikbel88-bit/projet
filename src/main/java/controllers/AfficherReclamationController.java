@@ -71,7 +71,7 @@ public class AfficherReclamationController {
                 reclamationContainer.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #bdc3c7;");
 
                 // Récupérer les informations du candidat
-                User candidat = serviceUser.getUserById(rec.getUserId());
+                User candidat = serviceUser.recupererParId(rec.getUserId());
                 if (candidat != null) {
                     Label candidatLabel = new Label("Candidat : " + candidat.getNom() + " " + candidat.getPrenom());
                     candidatLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14;");

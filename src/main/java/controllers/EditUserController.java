@@ -1,5 +1,6 @@
 package controller;
 
+import controllers.MainController;
 import entities.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -170,7 +170,7 @@ public class FormationListController implements Initializable {
             Parent root = loader.load();
 
             // Pass selected formation to the ModifyFormationController
-            Controllers.ModifyFormationController controller = loader.getController();
+            controllers.ModifyFormationController controller = loader.getController();
             controller.setFormation(formation); // Fills the form with current data
 
             // Setup the scene and stage

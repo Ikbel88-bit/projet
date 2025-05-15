@@ -158,7 +158,7 @@ public class FormationClientController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddReservation.fxml"));
             Parent root = loader.load();
 
-            Controllers.AddReservationController controller = loader.getController();
+            controllers.AddReservationController controller = loader.getController();
             controller.setFormationId(formation.getId()); // Pass the formation ID
 
             Scene scene = new Scene(root);

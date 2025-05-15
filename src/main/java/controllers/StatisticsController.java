@@ -1,5 +1,6 @@
 package controller;
 
+import controllers.MainController;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

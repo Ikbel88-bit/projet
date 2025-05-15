@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * Service pour gérer les projets.
  */
-public class ServiceProjet implements IService<Projet> {
+public class ServiceProjet {
     private static final Logger LOGGER = Logger.getLogger(ServiceProjet.class.getName());
     private Connection connection;
 
@@ -25,7 +25,7 @@ public class ServiceProjet implements IService<Projet> {
      * Implémentation de la méthode abstraite afficher() de l'interface IService
      * @return Liste des projets
      */
-    @Override
+
     public List<Projet> afficher() {
         try {
             List<Projet> projets = recuperer();
@@ -160,7 +160,7 @@ public class ServiceProjet implements IService<Projet> {
      * @param projet Projet à supprimer
      * @throws SQLException Si erreur de base de données
      */
-    @Override
+
     public void supprimer(Projet projet) throws SQLException {
         supprimer(projet.getId_projet());
     }
@@ -430,7 +430,7 @@ public class ServiceProjet implements IService<Projet> {
      * Implémentation de la méthode abstraite compter() de l'interface IService
      * @return Nombre total de projets
      */
-    @Override
+
     public int compter() {
         try {
             return count();
@@ -445,7 +445,7 @@ public class ServiceProjet implements IService<Projet> {
      * @param id ID du projet à vérifier
      * @return true si le projet existe, false sinon
      */
-    @Override
+
     public boolean existe(int id) {
         try {
             Projet projet = findById(id);
@@ -461,7 +461,7 @@ public class ServiceProjet implements IService<Projet> {
      * @param critere Critère de recherche
      * @return Liste des projets correspondants
      */
-    @Override
+
     public List<Projet> rechercher(String critere) {
         try {
             return search(critere);
@@ -476,7 +476,7 @@ public class ServiceProjet implements IService<Projet> {
      * @param id ID du projet à récupérer
      * @return Le projet trouvé ou null si non trouvé
      */
-    @Override
+
     public Projet recupererParId(int id) {
         try {
             return findById(id);

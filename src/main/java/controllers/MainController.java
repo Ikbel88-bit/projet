@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import entities.User;
 import entities.Projet;
@@ -12,6 +12,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import services.ServiceUser;
+import controller.GestionProjetController;
+import controllers.GestionTacheController;
+import controller.AdminDashboardController;
+import controller.EmployeeDashboardController;
+import controllers.ProjectCardsController;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,8 +44,10 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Connexion.fxml"));
             Parent root = loader.load();
-            LoginController loginController = loader.getController();
-            loginController.setMainController(this);
+            controller.LoginController loginController = (controller.LoginController) loader.getController();
+            if (loginController != null) {
+                loginController.setMainController(this);
+            }
             mainPane.setCenter(root);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Erreur lors du chargement de l'écran de connexion", e);
@@ -218,7 +225,7 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GestionProjet.fxml"));
             Parent view = loader.load();
 
-            GestionProjetController controller = loader.getController();
+             GestionProjetController controller = loader.getController();
             if (controller != null) {
                 controller.setMainController(this);
                 controller.setProjet(projet);

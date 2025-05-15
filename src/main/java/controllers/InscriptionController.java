@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import controllers.LoginController;
+import controllers.MainController;
 import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -347,8 +349,10 @@ public class InscriptionController implements Initializable {
             if (mainController != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Connexion.fxml"));
                 Parent root = loader.load();
-                LoginController loginController = loader.getController();
-                loginController.setMainController(mainController);
+                controller.LoginController loginController = (controller.LoginController) loader.getController();
+                if (loginController != null) {
+                    loginController.setMainController(mainController);
+                }
                 mainController.setCenter(root);
             } else {
                 LOGGER.severe("MainController est null, impossible de naviguer vers la page de connexion");

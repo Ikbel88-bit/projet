@@ -3,6 +3,7 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MyDatabase {
 
@@ -10,6 +11,7 @@ public class MyDatabase {
     private static final String USER = "root";
     private static final String PASSWORD = "";
     private static MyDatabase instance;
+
     private Connection cnx;
 
     private MyDatabase() {
@@ -100,5 +102,9 @@ public class MyDatabase {
         } catch (SQLException e) {
             System.err.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
         }
+    }
+
+    public Connection getConnection() {
+        return cnx;
     }
 }
