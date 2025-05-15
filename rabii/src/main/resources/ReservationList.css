@@ -1,0 +1,193 @@
+.root {
+    -fx-background-color: #f8fafc;
+}
+
+/* Titre principal */
+.title-label {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.2), 8, 0, 0, 2);
+    -fx-padding: 0 0 20 0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-border-color: transparent transparent #3b82f6 transparent;
+    -fx-border-width: 0 0 4 0;
+}
+
+/* Container principal avec FlowPane */
+.reservation-list {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 32;
+    -fx-hgap: 24;
+    -fx-vgap: 24;
+    -fx-alignment: center;
+    -fx-orientation: horizontal;
+    -fx-row-valignment: top;
+    -fx-column-halignment: left;
+    -fx-pref-width: 100%;
+}
+
+/* Style des cartes */
+.reservation-item {
+    -fx-background-color: white;
+    -fx-padding: 24;
+    -fx-spacing: 20;
+    -fx-background-radius: 20;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 4);
+    -fx-pref-width: 380;
+    -fx-max-width: 380;
+    -fx-min-height: 300;
+    -fx-alignment: TOP_LEFT;
+    -fx-transition: all 0.3s ease;
+}
+
+.reservation-item:hover {
+    -fx-background-color: linear-gradient(to bottom right, white, #f0f9ff);
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.25), 18, 0, 0, 6);
+    -fx-border-color: #3b82f6;
+    -fx-translate-y: -3;
+    -fx-cursor: hand;
+}
+
+/* En-tête de la carte */
+.card-header {
+    -fx-spacing: 15;
+    -fx-padding: 0 0 20 0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Titre de la réservation */
+.reservation-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Container des informations */
+.info-container {
+    -fx-spacing: 16;
+    -fx-padding: 20;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 16;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.02), 4, 0, 0, 2);
+}
+
+/* Labels et valeurs */
+.info-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: normal;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.info-value {
+    -fx-font-size: 16px;
+    -fx-text-fill: #0f172a;
+    -fx-font-weight: 600;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Actions container */
+.actions-container {
+    -fx-padding: 20 0 0 0;
+    -fx-spacing: 15;
+    -fx-alignment: CENTER;
+}
+
+/* Boutons d'action */
+.action-button {
+    -fx-padding: 12 24;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+    -fx-min-width: 130;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-transition: all 0.2s ease;
+}
+
+.edit-button {
+    -fx-background-color: linear-gradient(to right, #3b82f6, #2563eb);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.3), 8, 0, 0, 2);
+}
+
+.edit-button:hover {
+    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.4), 12, 0, 0, 4);
+    -fx-translate-y: -2;
+}
+
+.delete-button {
+    -fx-background-color: white;
+    -fx-text-fill: #ef4444;
+    -fx-border-color: #ef4444;
+    -fx-border-width: 2;
+    -fx-border-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.1), 4, 0, 0, 1);
+}
+
+.delete-button:hover {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #dc2626;
+    -fx-text-fill: #dc2626;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.2), 8, 0, 0, 2);
+    -fx-translate-y: -2;
+}
+
+.reserve-button {
+    -fx-background-color: linear-gradient(to right, #10b981, #059669);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.3), 8, 0, 0, 2);
+}
+
+.reserve-button:hover {
+    -fx-background-color: linear-gradient(to right, #059669, #047857);
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.4), 12, 0, 0, 4);
+    -fx-translate-y: -2;
+}
+
+/* Scroll Pane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-padding: 0 0 0 4;
+}
+
+.scroll-pane > .scroll-bar:vertical > .thumb {
+    -fx-background-color: #94a3b8;
+    -fx-background-radius: 8;
+}
+
+/* Empty state */
+.empty-state {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+    -fx-padding: 40;
+}
+
+.empty-state-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: normal;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
