@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import entities.Reservation;
 import javafx.fxml.FXML;
