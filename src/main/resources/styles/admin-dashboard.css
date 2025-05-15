@@ -1,0 +1,279 @@
+/* Styles généraux */
+.dashboard-container {
+    -fx-background-color: #f5f6fa;
+    -fx-spacing: 0;
+}
+
+/* En-tête */
+.header {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.welcome-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-fill: #7f8c8d;
+}
+
+.logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Cartes de statistiques */
+.stats-container {
+    -fx-padding: 20;
+    -fx-min-width: 800px;
+}
+
+.stat-card {
+    -fx-min-width: 380px;
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.stat-card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.stat-card-content {
+    -fx-alignment: center;
+}
+
+.stat-item {
+    -fx-alignment: center;
+    -fx-spacing: 5;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Graphiques */
+.charts-container {
+    -fx-padding: 20;
+    -fx-min-width: 800px;
+}
+
+.chart-card {
+    -fx-min-width: 380px;
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.chart {
+    -fx-min-height: 200px;
+    -fx-padding: 10px;
+}
+
+/* Liste des projets et tâches */
+.projects-container, .tasks-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-min-width: 800px;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.projects-grid, .tasks-grid {
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+    -fx-padding: 20;
+    -fx-min-width: 800px;
+}
+
+/* Cartes de projet et tâche */
+.project-card, .task-card {
+    -fx-min-width: 350px;
+    -fx-max-width: 400px;
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.project-card:hover, .task-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 3);
+    -fx-translate-y: -2;
+}
+
+/* Boutons d'action */
+.action-button {
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.add-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+}
+
+.add-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.edit-button {
+    -fx-background-color: #f1c40f;
+    -fx-text-fill: #2c3e50;
+}
+
+.edit-button:hover {
+    -fx-background-color: #f39c12;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Badges d'état */
+.state-badge {
+    -fx-padding: 5 10;
+    -fx-background-radius: 15;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.state-badge.en-cours {
+    -fx-background-color: #f1c40f;
+    -fx-text-fill: #2c3e50;
+}
+
+.state-badge.termine {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+}
+
+.state-badge.en-retard {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+/* Animations */
+.project-card, .task-card {
+    -fx-transition: all 0.3s ease;
+}
+
+.project-card:hover, .task-card:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .stats-container, .charts-container {
+        -fx-spacing: 10;
+    }
+    
+    .stat-card, .chart-card {
+        -fx-min-width: 300;
+    }
+    
+    .projects-grid, .tasks-grid {
+        -fx-hgap: 10;
+        -fx-vgap: 10;
+    }
+}
+
+.main-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.main-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-content {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 0 0 20 0;
+}
+
+/* Styles pour la barre de défilement */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0 2px 0 2px;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+} 

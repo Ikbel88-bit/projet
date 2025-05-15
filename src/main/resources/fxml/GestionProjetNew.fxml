@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GestionProjetController"
+            prefHeight="700.0" prefWidth="900.0">
+    
+    <stylesheets>
+        <String fx:value="/css/styles.css"/>
+    </stylesheets>
+    
+    <top>
+        <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+            <padding><Insets top="20" bottom="20"/></padding>
+            <Label text="Gestion des Projets" styleClass="title-label"/>
+            <Label text="Créez et gérez vos projets efficacement" styleClass="subtitle-label"/>
+            
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Tableau de Bord" onAction="#handleRetourDashboard" styleClass="button,button-nav"/>
+                <Button text="Projets" onAction="#handleGestionProjets" styleClass="button,button-nav,active"/>
+                <Button text="Tâches" onAction="#handleGestionTaches" styleClass="button,button-nav"/>
+                <Button text="Employés" onAction="#handleGestionEmployes" styleClass="button,button-nav"/>
+                <Button text="Vue Cartes" onAction="#handleVueCartes" styleClass="button,button-nav"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll-pane">
+            <VBox spacing="20" styleClass="content-container">
+                <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+                
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Button text="Nouveau Projet" onAction="#handleNouveau" styleClass="button,button-new"/>
+                    <Button text="Vue Liste" onAction="#handleVueListe" styleClass="button,button-secondary"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox spacing="10" alignment="CENTER">
+                        <TextField fx:id="searchField" promptText="Rechercher un projet..." prefWidth="250"/>
+                        <Button text="Rechercher" onAction="#handleRechercher" styleClass="button,button-search"/>
+                    </HBox>
+                </HBox>
+                
+                <VBox spacing="15" styleClass="form-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    
+                    <Label text="Détails du projet" styleClass="section-title"/>
+                    
+                    <HBox spacing="20">
+                        <!-- Colonne gauche -->
+                        <VBox spacing="15" HBox.hgrow="ALWAYS">
+                            <!-- Nom du projet -->
+                            <VBox spacing="5">
+                                <Label text="Nom du projet *" styleClass="form-label"/>
+                                <TextField fx:id="nomProjetField" promptText="Entrez le nom du projet"/>
+                                <Label fx:id="nomProjetErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                            
+                            <!-- Description -->
+                            <VBox spacing="5">
+                                <Label text="Description *" styleClass="form-label"/>
+                                <TextArea fx:id="descriptionProjetField" promptText="Entrez la description du projet" prefHeight="100"/>
+                                <Label fx:id="descriptionErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                            
+                            <!-- Lieu -->
+                            <VBox spacing="5">
+                                <Label text="Lieu *" styleClass="form-label"/>
+                                <HBox spacing="10">
+                                    <TextField fx:id="lieuField" promptText="Entrez le lieu du projet" HBox.hgrow="ALWAYS"/>
+                                    <Button text="Voir sur la carte" onAction="#handleShowMap" styleClass="button,button-secondary"/>
+                                </HBox>
+                                <Label fx:id="lieuErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                        </VBox>
+                        
+                        <!-- Colonne droite -->
+                        <VBox spacing="15" HBox.hgrow="ALWAYS">
+                            <!-- Date de début -->
+                            <VBox spacing="5">
+                                <Label text="Date de début" styleClass="form-label"/>
+                                <DatePicker fx:id="dateDebutField" promptText="Date de début (aujourd'hui par défaut)" disable="true"/>
+                            </VBox>
+                            
+                            <!-- Date de fin -->
+                            <VBox spacing="5">
+                                <Label text="Date de fin *" styleClass="form-label"/>
+                                <DatePicker fx:id="dateFinField" promptText="Sélectionnez la date de fin"/>
+                                <Label fx:id="dateFinErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                            
+                            <!-- État -->
+                            <VBox spacing="5">
+                                <Label text="État *" styleClass="form-label"/>
+                                <ChoiceBox fx:id="etatField" prefWidth="150"/>
+                                <Label fx:id="etatErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                            
+                            <!-- ID Admin -->
+                            <VBox spacing="5">
+                                <Label text="ID Admin *" styleClass="form-label"/>
+                                <HBox spacing="10">
+                                    <TextField fx:id="id_admin" promptText="Entrez l'ID de l'administrateur" HBox.hgrow="ALWAYS"/>
+                                    <Button text="Sélectionner" onAction="#handleSelectAdmin" styleClass="button,button-secondary"/>
+                                </HBox>
+                                <Label fx:id="adminIdErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Carte pour le lieu -->
+                    <VBox spacing="5" fx:id="mapContainer" visible="false" managed="false">
+                        <Label text="Carte du lieu" styleClass="section-subtitle"/>
+                        <WebView fx:id="mapWebView" prefHeight="300"/>
+                    </VBox>
+                    
+                    <!-- Boutons d'action -->
+                    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 20 0 0 0;">
+                        <Button text="Annuler" onAction="#handleAnnuler" styleClass="button,button-cancel"/>
+                        <Button text="Supprimer" onAction="#handleSupprimer" styleClass="button,button-delete"/>
+                        <Button fx:id="sauvegarderButton" text="Sauvegarder" onAction="#handleSauvegarder" styleClass="button,button-add"/>
+                    </HBox>
+                </VBox>
+                
+                <VBox spacing="10" styleClass="stats-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="Statistiques des Projets" styleClass="section-title"/>
+                    
+                    <HBox spacing="20" alignment="CENTER">
+                        <VBox styleClass="stat-box,stat-completed" alignment="CENTER" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Projets Terminés" styleClass="stat-title"/>
+                            <Label fx:id="projetsTerminesLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-box,stat-ongoing" alignment="CENTER" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Projets En Cours" styleClass="stat-title"/>
+                            <Label fx:id="projetsEnCoursLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-box,stat-delayed" alignment="CENTER" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Projets En Retard" styleClass="stat-title"/>
+                            <Label fx:id="projetsEnRetardLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

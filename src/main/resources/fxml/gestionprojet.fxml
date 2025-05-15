@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="522.0" prefWidth="440.0" spacing="15" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GestionProjetController">
+    <stylesheets>
+        <String fx:value="/css/styles.css" />
+    </stylesheets>
+
+    <VBox maxWidth="400" prefHeight="536.0" prefWidth="400.0" spacing="15" styleClass="card">
+        <Label styleClass="title-label" text="Gestion de Projet" />
+        <Label styleClass="label" text="Nom du projet" />
+        <TextField fx:id="nomProjetField" promptText="Entrez le nom du projet" />
+        <Label fx:id="nomProjetErrorLabel" styleClass="field-error-label" visible="false"/>
+        <Label styleClass="label" text="Description" />
+        <TextArea fx:id="descriptionProjetField" prefHeight="69.0" prefWidth="400.0" promptText="Entrez la description" />
+        <Label fx:id="descriptionErrorLabel" styleClass="field-error-label" visible="false"/>
+        <Label styleClass="label" text="Lieu" />
+        <TextField fx:id="lieuField" promptText="Entrez le lieu du projet" />
+        <Label fx:id="lieuErrorLabel" styleClass="field-error-label" visible="false"/>
+        <Label styleClass="label" text="Date de fin" />
+        <DatePicker fx:id="dateFinField" promptText="Sélectionnez la date de fin" />
+        <Label fx:id="dateFinErrorLabel" styleClass="field-error-label" visible="false"/>
+        <Label prefHeight="17.0" prefWidth="165.0" text="ID admin" />
+        <TextField fx:id="id_admin" />
+        <Label fx:id="adminIdErrorLabel" styleClass="field-error-label" visible="false"/>
+        <Label styleClass="label" text="État" />
+        <ChoiceBox fx:id="etatField" />
+        <Button fx:id="sauvegarderButton" onAction="#handleSauvegarder" styleClass="button,button-add" text="Sauvegarder" />
+    </VBox>
+</VBox>

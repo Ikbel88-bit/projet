@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.LoginController"
+           stylesheets="/css/styles.css">
+    
+    <VBox alignment="CENTER" spacing="30" maxWidth="1000" maxHeight="700">
+        <StackPane styleClass="card">
+            <HBox>
+                <!-- Partie gauche avec image -->
+                <StackPane style="-fx-background-color: #3498db; -fx-background-radius: 8 0 0 8;">
+                    <padding>
+                        <Insets topRightBottomLeft="30"/>
+                    </padding>
+                    <VBox alignment="CENTER" spacing="20">
+                        <Label text="GP" style="-fx-font-size: 72px; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 100; -fx-padding: 20 30;"/>
+                        <Text fill="white" text="Gestion de Projets et Tâches" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+                        <Text fill="white" text="Organisez vos projets et suivez vos tâches efficacement" textAlignment="CENTER" wrappingWidth="300"/>
+                    </VBox>
+                </StackPane>
+                
+                <!-- Partie droite avec formulaire -->
+                <VBox alignment="CENTER" spacing="20" minWidth="400">
+                    <padding>
+                        <Insets topRightBottomLeft="40"/>
+                    </padding>
+                    
+                    <Text text="Connexion" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                    <Text text="Bienvenue ! Veuillez vous connecter pour continuer." style="-fx-fill: #7f8c8d;"/>
+                    
+                    <VBox spacing="5">
+                        <Label text="Email" styleClass="label"/>
+                        <TextField fx:id="usernameField" promptText="Entrez votre email"/>
+                        <Label fx:id="usernameErrorLabel" styleClass="field-error-label" visible="false"/>
+                    </VBox>
+                    
+                    <VBox spacing="5">
+                        <Label text="Mot de passe" styleClass="label"/>
+                        <PasswordField fx:id="passwordField" promptText="Entrez votre mot de passe"/>
+                        <Label fx:id="passwordErrorLabel" styleClass="field-error-label" visible="false"/>
+                    </VBox>
+                    
+                    <HBox alignment="CENTER_RIGHT">
+                        <Hyperlink text="Mot de passe oublié ?"/>
+                    </HBox>
+                    
+                    <Button fx:id="loginButton" text="Se connecter" styleClass="button,button-add" 
+                            onAction="#handleLogin" maxWidth="Infinity"/>
+                    
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label text="Vous n'avez pas de compte ?"/>
+                        <Hyperlink text="S'inscrire" onAction="#handleRegister"/>
+                    </HBox>
+                    
+                    <Label fx:id="errorLabel" styleClass="error-label"/>
+                </VBox>
+            </HBox>
+        </StackPane>
+    </VBox>
+</StackPane>
