@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.AccueilController"
+      alignment="CENTER" spacing="20">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Bienvenue dans SmartRH" styleClass="title"/>
+    <Label text="Système de gestion des ressources humaines" styleClass="subtitle"/>
+    
+    <Label text="Bienvenue sur SmartRH" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+    <HBox alignment="CENTER" spacing="40">
+        <VBox alignment="CENTER" spacing="10" styleClass="dashboard-card">
+            <Label text="Ressources disponibles" style="-fx-font-size: 16px; -fx-text-fill: #2c3e50;"/>
+            <Label fx:id="ressourcesCount" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+        <VBox alignment="CENTER" spacing="10" styleClass="dashboard-card">
+            <Label text="Réservations actives" style="-fx-font-size: 16px; -fx-text-fill: #2c3e50;"/>
+            <Label fx:id="reservationsCount" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" spacing="20">
+        <Button text="Nouvelle ressource" styleClass="action-button" onAction="#handleNouvelleRessource"/>
+        <Button text="Nouvelle réservation" styleClass="action-button" onAction="#handleNouvelleReservation"/>
+    </HBox>
+</VBox> 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #40E0D0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherReservationController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <children>
+                <Label text="Liste des Réservations" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                <TableView fx:id="reservationTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                        <TableColumn fx:id="colResource" text="Ressource" prefWidth="200"/>
+                        <TableColumn fx:id="colDateDebut" text="Date Début" prefWidth="150"/>
+                        <TableColumn fx:id="colDateFin" text="Date Fin" prefWidth="150"/>
+                        <TableColumn fx:id="colStatus" text="Statut" prefWidth="150"/>
+                    </columns>
+                </TableView>
+                <Button text="Retour" onAction="#handleRetour"
+                        style="-fx-background-radius: 15; -fx-min-width: 100; -fx-min-height: 30;"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

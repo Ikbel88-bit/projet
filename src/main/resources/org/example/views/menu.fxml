@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.MainController"
+            stylesheets="@../styles.css">
+    
+    <top>
+        <HBox styleClass="menu-bar">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Accueil" onAction="#handleAccueil"/>
+            <Button text="Ressources" onAction="#handleRessources"/>
+            <Button text="Réservations" onAction="#handleReservations"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-pane"/>
+    </center>
+    
+</BorderPane> 
