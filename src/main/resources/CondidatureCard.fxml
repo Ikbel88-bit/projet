@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<HBox spacing="18.0" alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="700.0" styleClass="card-offre" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CondidatureCardController">
+    <children>
+        <VBox spacing="10.0" prefWidth="650.0">
+            <children>
+                <HBox spacing="15.0" alignment="CENTER_LEFT">
+                    <Label fx:id="labelEntreprise" styleClass="label-section" text="Entreprise" />
+                    <Label fx:id="labelTitre" styleClass="label-title" text="Titre de l'offre" />
+                    <Label fx:id="labelContrat" styleClass="label-section" text="Contrat" />
+                </HBox>
+                <Label fx:id="labelLettre" wrapText="true" styleClass="label-content" text="Lettre de motivation" />
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="Statut : " styleClass="label-section" />
+                    <Label fx:id="labelStatut" styleClass="label-status" text="en attente" />
+                </HBox>
+            </children>
+        </VBox>
+        <VBox spacing="10.0" alignment="CENTER">
+            <ImageView fx:id="editImageView" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#modifierCard" styleClass="action-icon" />
+            <ImageView fx:id="deleteImageView" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#supprimerCard" styleClass="action-icon" />
+        </VBox>
+    </children>
+    <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+    <style>
+        -fx-background-color: white;
+        -fx-background-radius: 10px;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+        -fx-border-radius: 10px;
+        -fx-border-color: #e0e0e0;
+        -fx-border-width: 1px;
+        -fx-transition: -fx-background-color 0.3s, -fx-effect 0.3s;
+    </style>
+</HBox> 
