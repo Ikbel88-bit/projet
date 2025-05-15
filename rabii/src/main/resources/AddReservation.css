@@ -1,0 +1,75 @@
+.root {
+    -fx-background-color: #f8fafc;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+    -fx-padding: 0 0 20 0;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.error-label {
+    -fx-text-fill: #dc3545;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+VBox {
+    -fx-spacing: 15;
+}
+
+TextField, TextArea, DatePicker {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+TextField:focused, TextArea:focused, DatePicker:focused {
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2;
+}
+
+.action-button {
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.edit-button {
+    -fx-background-color: linear-gradient(to right, #3b82f6, #2563eb);
+    -fx-text-fill: white;
+}
+
+.edit-button:hover {
+    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+}
+
+.delete-button {
+    -fx-background-color: white;
+    -fx-text-fill: #ef4444;
+    -fx-border-color: #ef4444;
+    -fx-border-width: 2;
+    -fx-border-radius: 30;
+}
+
+.delete-button:hover {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #dc2626;
+    -fx-text-fill: #dc2626;
+}
+
+.reserve-button {
+    -fx-background-color: linear-gradient(to right, #10b981, #059669);
+    -fx-text-fill: white;
+}
+
+.reserve-button:hover {
+    -fx-background-color: linear-gradient(to right, #059669, #047857);
+}

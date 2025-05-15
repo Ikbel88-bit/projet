@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.RessourcesHumainesController"
+            prefHeight="700.0" prefWidth="1000.0">
+    
+    <stylesheets>
+        <String fx:value="/css/styles.css"/>
+    </stylesheets>
+    
+    <top>
+        <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+            <padding><Insets top="20" bottom="20"/></padding>
+            <Label text="Gestion des Ressources Humaines" styleClass="title-label"/>
+            <Label text="Suivez la performance et la charge de travail de vos employés" styleClass="subtitle-label"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20" styleClass="content-container">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            
+            <!-- Sélection de l'employé -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Sélectionner un employé:" styleClass="label-form"/>
+                <ComboBox fx:id="employeComboBox" prefWidth="300"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Rafraîchir" onAction="#handleRefresh" styleClass="button-secondary"/>
+                <Button text="Assigner une tâche" onAction="#handleAssignTask" styleClass="button-primary"/>
+                <Button text="Générer un rapport" onAction="#handleGenerateReport" styleClass="button-info"/>
+            </HBox>
+            
+            <!-- Informations sur l'employé -->
+            <HBox spacing="20">
+                <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="card">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Charge de travail" styleClass="section-title"/>
+                    <Label fx:id="chargeLabel" text="Charge de travail: 0 tâches"/>
+                    <PieChart fx:id="workloadChart" legendVisible="true" labelsVisible="true" VBox.vgrow="ALWAYS"/>
+                </VBox>
+                
+                <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="card">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Performance" styleClass="section-title"/>
+                    <Label fx:id="performanceLabel" text="Performance: 0.0%"/>
+                    <BarChart fx:id="performanceChart" legendVisible="true" VBox.vgrow="ALWAYS">
+                        <xAxis>
+                            <CategoryAxis label="Employé"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Performance (%)" lowerBound="0" upperBound="100"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+            </HBox>
+            
+            <!-- Tableaux des tâches et projets -->
+            <TabPane>
+                <Tab text="Tâches assignées" closable="false">
+                    <TableView fx:id="tachesTableView" VBox.vgrow="ALWAYS"/>
+                </Tab>
+                <Tab text="Projets impliqués" closable="false">
+                    <TableView fx:id="projetsTableView" VBox.vgrow="ALWAYS"/>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </center>
+</BorderPane>

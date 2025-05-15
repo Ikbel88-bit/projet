@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@../styles/gestion-projet.css" 
+            xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controller.StatisticsController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header-box" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="page-title" text="Statistiques du Projet">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#handleRefresh" styleClass="btn-primary" text="Actualiser" />
+                  <Button fx:id="retourButton" mnemonicParsing="false" onAction="#handleRetour" styleClass="btn-secondary" text="Retour au Dashboard" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+         <content>
+            <VBox spacing="20.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- Statistiques des projets -->
+                  <GridPane hgap="20.0" vgap="20.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" styleClass="stat-card">
+                           <children>
+                              <Label styleClass="stat-title" text="Projets Terminés" />
+                              <Label fx:id="projetsTerminesLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="stat-card" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="stat-title" text="Projets En Cours" />
+                              <Label fx:id="projetsEnCoursLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="stat-card" GridPane.columnIndex="2">
+                           <children>
+                              <Label styleClass="stat-title" text="Projets En Retard" />
+                              <Label fx:id="projetsEnRetardLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  
+                  <!-- Statistiques des tâches -->
+                  <GridPane hgap="20.0" vgap="20.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" styleClass="stat-card">
+                           <children>
+                              <Label styleClass="stat-title" text="Tâches Terminées" />
+                              <Label fx:id="tachesTermineesLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="stat-card" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="stat-title" text="Tâches En Cours" />
+                              <Label fx:id="tachesEnCoursLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="stat-card" GridPane.columnIndex="2">
+                           <children>
+                              <Label styleClass="stat-title" text="Tâches En Retard" />
+                              <Label fx:id="tachesEnRetardLabel" styleClass="stat-value" text="0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  
+                  <!-- Graphiques -->
+                  <VBox fx:id="chartsContainer" spacing="20.0">
+                     <children>
+                        <HBox spacing="20.0">
+                           <children>
+                              <VBox HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="section-title" text="Répartition des Projets" />
+                                    <PieChart fx:id="projetsPieChart" prefHeight="300.0" />
+                                 </children>
+                              </VBox>
+                              <VBox HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="section-title" text="Répartition des Tâches" />
+                                    <PieChart fx:id="tachesPieChart" prefHeight="300.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox>
+                           <children>
+                              <Label styleClass="section-title" text="Comparaison Projets/Tâches" />
+                              <BarChart fx:id="comparaisonBarChart" prefHeight="300.0">
+                                 <xAxis>
+                                    <CategoryAxis fx:id="xAxis" side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="yAxis" side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.effect.DropShadow?>
+
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.EmployeeDashboardController"
+      styleClass="dashboard-container"
+      prefWidth="1000" prefHeight="700">
+
+    <stylesheets>
+        <String fx:value="/styles/dashboard.css"/>
+    </stylesheets>
+
+    <!-- En-tête amélioré -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <VBox HBox.hgrow="ALWAYS">
+            <Label fx:id="welcomeLabel" styleClass="welcome-label"/>
+            <Text styleClass="subtitle" text="Tableau de bord des tâches"/>
+        </VBox>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button fx:id="refreshButton"
+                    text="Actualiser"
+                    onAction="#handleRefresh"
+                    styleClass="refresh-button"/>
+            <Button fx:id="retourButton"
+                    text="Retour"
+                    onAction="#handleRetour"
+                    styleClass="return-button"/>
+            <Button fx:id="logoutButton"
+                    text="Déconnexion"
+                    onAction="#handleLogout"
+                    styleClass="logout-button"/>
+        </HBox>
+    </HBox>
+
+    <!-- Conteneur principal avec ombre et style amélioré -->
+    <ScrollPane fx:id="tasksScrollPane" fitToWidth="true" styleClass="main-scroll-pane" VBox.vgrow="ALWAYS">
+        <VBox styleClass="main-container" spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Statistiques -->
+            <VBox styleClass="stats-container">
+                <Label text="Aperçu de mes tâches" styleClass="section-title"/>
+                <Separator style="-fx-opacity: 0.3; -fx-padding: 0 0 10 0;"/>
+
+                <HBox spacing="20">
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                        <Label text="Tâches à faire" styleClass="stat-label"/>
+                        <Label fx:id="tachesAFaireLabel" text="0" styleClass="stat-value">
+                            <effect>
+                                <DropShadow color="#00000033" radius="2" spread="0.1" offsetX="1" offsetY="1"/>
+                            </effect>
+                        </Label>
+                    </VBox>
+
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                        <Label text="Tâches terminées" styleClass="stat-label"/>
+                        <Label fx:id="tachesTermineesLabel" text="0" styleClass="stat-value">
+                            <effect>
+                                <DropShadow color="#00000033" radius="2" spread="0.1" offsetX="1" offsetY="1"/>
+                            </effect>
+                        </Label>
+                    </VBox>
+
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                        <Label text="Tâches en retard" styleClass="stat-label"/>
+                        <Label fx:id="tachesEnRetardLabel" text="0" styleClass="stat-value">
+                            <effect>
+                                <DropShadow color="#00000033" radius="2" spread="0.1" offsetX="1" offsetY="1"/>
+                            </effect>
+                        </Label>
+                    </VBox>
+
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                        <Label text="Taux de complétion" styleClass="stat-label"/>
+                        <Label fx:id="tauxCompletionLabel" text="0%" styleClass="stat-value">
+                            <effect>
+                                <DropShadow color="#00000033" radius="2" spread="0.1" offsetX="1" offsetY="1"/>
+                            </effect>
+                        </Label>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Graphiques -->
+            <HBox spacing="20" styleClass="charts-container">
+                <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <Label text="Répartition des tâches" styleClass="chart-title"/>
+                    <PieChart fx:id="taskDistributionChart" VBox.vgrow="ALWAYS" minHeight="250" animated="true" legendVisible="true" labelsVisible="true" labelLineLength="20"/>
+                </VBox>
+
+                <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <Label text="Échéances à venir" styleClass="chart-title"/>
+                    <BarChart fx:id="deadlineChart" VBox.vgrow="ALWAYS" minHeight="250" animated="true" legendVisible="false">
+                        <xAxis>
+                            <CategoryAxis label="Tâches" animated="true"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Jours restants" animated="true" tickLabelGap="5" tickUnit="1"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+            </HBox>
+
+            <!-- Tâches urgentes -->
+            <VBox styleClass="urgent-tasks-container">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label text="Tâches urgentes (échéance < 3 jours)" styleClass="section-title"/>
+                <Separator style="-fx-opacity: 0.3; -fx-padding: 0 0 10 0;"/>
+                <ScrollPane fitToWidth="true" styleClass="tasks-scroll-pane" maxHeight="200" hbarPolicy="NEVER">
+                    <VBox fx:id="urgentTasksContainer" spacing="10"/>
+                </ScrollPane>
+            </VBox>
+
+            <!-- Tâches à faire -->
+            <VBox styleClass="tasks-container">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label text="Mes tâches à faire" styleClass="section-title"/>
+                <Separator style="-fx-opacity: 0.3; -fx-padding: 0 0 10 0;"/>
+                <TabPane styleClass="tasks-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                    <Tab text="En cours" closable="false">
+                        <ScrollPane fitToWidth="true" styleClass="tasks-scroll-pane" hbarPolicy="NEVER">
+                            <GridPane fx:id="tasksEnCoursGrid" styleClass="tasks-grid"/>
+                        </ScrollPane>
+                    </Tab>
+                    <Tab text="En retard" closable="false">
+                        <ScrollPane fitToWidth="true" styleClass="tasks-scroll-pane" hbarPolicy="NEVER">
+                            <GridPane fx:id="tasksEnRetardGrid" styleClass="tasks-grid"/>
+                        </ScrollPane>
+                    </Tab>
+                    <Tab text="Terminées" closable="false">
+                        <ScrollPane fitToWidth="true" styleClass="tasks-scroll-pane" hbarPolicy="NEVER">
+                            <GridPane fx:id="tasksTermineesGrid" styleClass="tasks-grid"/>
+                        </ScrollPane>
+                    </Tab>
+                </TabPane>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

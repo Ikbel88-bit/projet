@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AdminDashboardController"
+            styleClass="dashboard-container">
+    <stylesheets>
+        <String fx:value="/css/styles.css"/>
+        <String fx:value="/styles/admin-dashboard.css"/>
+    </stylesheets>
+    
+    <top>
+        <VBox styleClass="header">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label fx:id="welcomeLabel" text="Bienvenue, Admin" styleClass="welcome-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Déconnexion" onAction="#handleLogout" styleClass="logout-button"/>
+            </HBox>
+            
+            <HBox spacing="10" styleClass="nav-buttons">
+                <Button text="Tableau de bord" onAction="#handleDashboard" styleClass="nav-button,active"/>
+                <Button text="Gestion Projets" onAction="#handleGestionProjets" styleClass="nav-button"/>
+                <Button text="Gestion Tâches" onAction="#handleGestionTaches" styleClass="nav-button"/>
+                <Button text="Gestion Utilisateurs" onAction="#handleGestionUtilisateurs" styleClass="nav-button"/>
+                <Button text="Statistiques" onAction="#handleStatistiques" styleClass="nav-button"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll-pane">
+            <VBox spacing="20" styleClass="main-content">
+                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+                
+                <!-- Statistiques -->
+                <VBox spacing="20" styleClass="stats-container">
+                    <Label text="Aperçu" styleClass="section-title"/>
+                    
+                    <HBox spacing="20">
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Projets Actifs" styleClass="stat-label"/>
+                            <Label fx:id="projetsActifsLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Tâches En Cours" styleClass="stat-label"/>
+                            <Label fx:id="tachesEnCoursLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Employés Actifs" styleClass="stat-label"/>
+                            <Label fx:id="employesActifsLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                            <Label text="Tâches En Retard" styleClass="stat-label"/>
+                            <Label fx:id="tachesEnRetardLabel" text="0" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+                
+                <!-- Graphiques -->
+                <HBox spacing="20" styleClass="charts-container">
+                    <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                        <Label text="Répartition des projets" styleClass="chart-title"/>
+                        <Pane fx:id="projetChartContainer" VBox.vgrow="ALWAYS" minHeight="250"/>
+                    </VBox>
+                    
+                    <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                        <Label text="Répartition des tâches" styleClass="chart-title"/>
+                        <Pane fx:id="tacheChartContainer" VBox.vgrow="ALWAYS" minHeight="250"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Liste des projets -->
+                <VBox styleClass="projects-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Projets récents" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="ajouterProjetButton" 
+                                text="Ajouter Projet"
+                                onAction="#handleAjouterProjet"
+                                styleClass="button,button-add"/>
+                    </HBox>
+                    
+                    <FlowPane fx:id="projetsGrid" styleClass="projects-grid" hgap="20" vgap="20"/>
+                </VBox>
+
+                <!-- Notifications -->
+                <VBox styleClass="notifications-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Notifications" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Actualiser" 
+                                onAction="#handleRefresh"
+                                styleClass="button,button-refresh"/>
+                    </HBox>
+                    
+                    <ScrollPane fx:id="notificationsScrollPane" fitToWidth="true" styleClass="notifications-scroll">
+                        <VBox fx:id="notificationsContainer" spacing="10" styleClass="notifications-list"/>
+                    </ScrollPane>
+                </VBox>
+
+                <!-- Liste des tâches -->
+                <VBox styleClass="tasks-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Tâches récentes" styleClass="section-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="ajouterTacheButton" 
+                                text="Ajouter Tâche"
+                                onAction="#handleAjouterTache"
+                                styleClass="button,button-add"/>
+                    </HBox>
+                    
+                    <FlowPane fx:id="tachesGrid" styleClass="tasks-grid" hgap="20" vgap="20"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

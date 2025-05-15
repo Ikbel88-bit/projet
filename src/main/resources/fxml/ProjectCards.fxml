@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ProjectCardsController"
+            prefHeight="800.0" prefWidth="1200.0">
+    
+    <stylesheets>
+        <String fx:value="/css/styles.css"/>
+    </stylesheets>
+    
+    <top>
+        <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+            <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+            <Label text="Vue des Projets et Tâches" styleClass="title-label"/>
+            <Label text="Visualisez vos projets et tâches sous forme de cartes" styleClass="subtitle-label"/>
+            
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button fx:id="refreshButton" text="Rafraîchir" onAction="#handleRefresh" styleClass="btn-primary"/>
+                <Button fx:id="retourButton" text="Retour" onAction="#handleRetour" styleClass="btn-secondary"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll-pane">
+            <VBox spacing="30" alignment="TOP_CENTER">
+                <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+                
+                <VBox spacing="15">
+                    <Label text="Projets" styleClass="section-title"/>
+                    <FlowPane fx:id="projetsContainer" hgap="20" vgap="20" alignment="CENTER"/>
+                </VBox>
+                
+                <Separator/>
+                
+                <VBox spacing="15">
+                    <Label text="Tâches" styleClass="section-title"/>
+                    <FlowPane fx:id="tachesContainer" hgap="20" vgap="20" alignment="CENTER"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

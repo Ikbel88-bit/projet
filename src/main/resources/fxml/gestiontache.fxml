@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GestionTacheController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <stylesheets>
+        <String fx:value="/css/styles.css"/>
+    </stylesheets>
+
+    <top>
+        <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+            <padding><Insets top="20" bottom="20"/></padding>
+            <Label text="Gestion des Tâches" styleClass="title-label"/>
+            <Label text="Créez et gérez vos tâches efficacement" styleClass="subtitle-label"/>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll-pane">
+            <VBox spacing="20" styleClass="content-container">
+                <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+
+                <!-- Boutons d'action -->
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Button text="Nouvelle Tâche" onAction="#handleNouvelleTache" styleClass="button,button-add"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="searchField" promptText="Rechercher une tâche..." prefWidth="250"/>
+                    <Button text="Rechercher" styleClass="button,button-search"/>
+                    <Button text="Retour" onAction="#handleRetour" styleClass="button,button-cancel"/>
+                </HBox>
+
+                <!-- Formulaire de tâche -->
+                <VBox spacing="15" styleClass="form-container,card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                    <Label text="Détails de la tâche" styleClass="section-title"/>
+
+                    <HBox spacing="20">
+                        <!-- Colonne gauche -->
+                        <VBox spacing="15" HBox.hgrow="ALWAYS">
+                            <!-- Nom de la tâche -->
+                            <VBox spacing="5">
+                                <Label text="Nom de la tâche *" />
+                                <TextField fx:id="nomTacheField" promptText="Entrez le nom de la tâche"/>
+                                <Label fx:id="nomTacheErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+
+                            <!-- Description -->
+                            <VBox spacing="5">
+                                <Label text="Description *" />
+                                <TextArea fx:id="descriptionTacheField" promptText="Entrez la description de la tâche" prefHeight="100"/>
+                                <Label fx:id="descriptionTacheErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+
+                            <!-- ID Projet -->
+                            <VBox spacing="5">
+                                <Label text="ID Projet *" />
+                                <TextField fx:id="projetIdField" promptText="Entrez l'ID du projet"/>
+                                <Label fx:id="projetIdErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Colonne droite -->
+                        <VBox spacing="15" HBox.hgrow="ALWAYS">
+                            <!-- Date de début -->
+                            <VBox spacing="5">
+                                <Label text="Date de début *" />
+                                <DatePicker fx:id="dateDebutField" promptText="Sélectionnez la date de début"/>
+                                <Label fx:id="dateDebutTacheErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+
+                            <!-- Date de fin -->
+                            <VBox spacing="5">
+                                <Label text="Date de fin *" />
+                                <DatePicker fx:id="dateFinTacheField" promptText="Sélectionnez la date de fin"/>
+                                <Label fx:id="dateFinTacheErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+
+                            <!-- État -->
+                            <VBox spacing="5">
+                                <Label text="État *" />
+                                <ChoiceBox fx:id="etatTacheField" prefWidth="150"/>
+                                <Label fx:id="etatTacheErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+
+                            <!-- ID Employé -->
+                            <VBox spacing="5">
+                                <Label text="ID Employé *" />
+                                <TextField fx:id="employeIdField" promptText="Entrez l'ID de l'employé"/>
+                                <Label fx:id="employeIdErrorLabel" styleClass="field-error-label" visible="false"/>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Boutons d'action -->
+                    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 20 0 0 0;">
+                        <Button text="Annuler" onAction="#handleRetour" styleClass="button,button-cancel"/>
+                        <Button text="Supprimer" onAction="#handleSupprimerTache" styleClass="button,button-delete"/>
+                        <Button fx:id="sauvegarderTacheButton" text="Sauvegarder" onAction="#handleSauvegarderTache" styleClass="button,button-add"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Statistiques -->
+                <HBox spacing="20">
+                    <VBox spacing="10" styleClass="stats-container,card" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                        <Label text="Statistiques des Tâches" styleClass="section-title"/>
+                        <HBox spacing="20" alignment="CENTER">
+                            <VBox alignment="CENTER" styleClass="stat-box,stat-completed">
+                                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                                <Label text="Terminées" styleClass="stat-label"/>
+                                <Label fx:id="tachesTermineesLabel" text="0" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox alignment="CENTER" styleClass="stat-box,stat-ongoing">
+                                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                                <Label text="En cours" styleClass="stat-label"/>
+                                <Label fx:id="tachesEnCoursLabel" text="0" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox alignment="CENTER" styleClass="stat-box,stat-delayed">
+                                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                                <Label text="En retard" styleClass="stat-label"/>
+                                <Label fx:id="tachesEnRetardLabel" text="0" styleClass="stat-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <!-- Liste des tâches -->
+                <VBox spacing="10" styleClass="tasks-container,card" VBox.vgrow="ALWAYS">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="Liste des tâches" styleClass="section-title"/>
+                    <TableView fx:id="tacheTableView" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
