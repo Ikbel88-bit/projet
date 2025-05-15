@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.AddReservationController"
+            prefHeight="400.0" prefWidth="400.0"
+            stylesheets="@AddReservation.css">
+
+    <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="Ajouter une Réservation" styleClass="title-label"/>
+
+        <!-- Nom du participant -->
+        <VBox spacing="5">
+            <Label text="Nom du participant"/>
+            <TextField fx:id="nomParticipantField" promptText="Nom du participant"/>
+            <Label fx:id="nomParticipantError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Email du participant -->
+        <VBox spacing="5">
+            <Label text="Email du participant"/>
+            <TextField fx:id="emailParticipantField" promptText="Email du participant"/>
+            <Label fx:id="emailParticipantError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Date de réservation -->
+        <VBox spacing="5">
+            <Label text="Date de réservation"/>
+            <DatePicker fx:id="dateReservationPicker"/>
+            <Label fx:id="dateReservationError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Formation ID (hidden or read-only) -->
+        <VBox spacing="5" visible="false" managed="false">
+            <Label text="ID de la formation"/>
+            <TextField fx:id="formationIdField" editable="false"/>
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Réserver" fx:id="saveButton" onAction="#handleSaveReservation" styleClass="action-button, reserve-button"/>
+            <Button text="Annuler" onAction="#handleCancel" styleClass="action-button, delete-button"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

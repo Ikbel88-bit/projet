@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.AddFormationController"
+            prefHeight="500.0" prefWidth="400.0"
+            stylesheets="@AddFormation.css">
+
+    <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="Ajouter une Formation" styleClass="title-label"/>
+
+        <!-- Titre -->
+        <VBox spacing="5">
+            <Label text="Titre"/>
+            <TextField fx:id="titreField" promptText="Titre de la formation"/>
+            <Label fx:id="titreError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Description -->
+        <VBox spacing="5">
+            <Label text="Description"/>
+            <TextArea fx:id="descriptionField" promptText="Description de la formation" wrapText="true"/>
+            <Label fx:id="descriptionError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Date de début -->
+        <VBox spacing="5">
+            <Label text="Date de début"/>
+            <DatePicker fx:id="dateDebutPicker"/>
+            <Label fx:id="dateDebutError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Date de fin -->
+        <VBox spacing="5">
+            <Label text="Date de fin"/>
+            <DatePicker fx:id="dateFinPicker"/>
+            <Label fx:id="dateFinError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Formateur -->
+        <VBox spacing="5">
+            <Label text="Formateur"/>
+            <TextField fx:id="formateurField" promptText="Nom du formateur"/>
+            <Label fx:id="formateurError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Capacité -->
+        <VBox spacing="5">
+            <Label text="Capacité"/>
+            <TextField fx:id="capaciteField" promptText="Nombre de participants"/>
+            <Label fx:id="capaciteError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Enregistrer" fx:id="saveButton" onAction="#handleSaveFormation" styleClass="action-button, edit-button"/>
+            <Button text="Annuler" onAction="#handleCancel" styleClass="action-button, delete-button"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
